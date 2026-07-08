@@ -23,7 +23,7 @@ function baseManifest(): Record<string, unknown> {
       x402: { amount: '0.001', per: 'request' },
       'mpp-charge': { amount: '0.0008', per: 'request' },
     },
-    endpoints: { price: 'GET /price' },
+    endpoints: { price: { method: 'GET', path: '/price' } },
     tags: ['test'],
   }
 }
@@ -50,7 +50,7 @@ describe('routedock.schema — per-mode payee', () => {
 
   it('rejects a per-mode payee on mpp-session (override not supported there)', () => {
     const m = baseManifest()
-    ;(m.modes as string[]).push('mpp-session')
+      ; (m.modes as string[]).push('mpp-session')
     const pricing = m.pricing as Record<string, Record<string, unknown>>
     pricing['mpp-session'] = {
       rate: '0.0001',

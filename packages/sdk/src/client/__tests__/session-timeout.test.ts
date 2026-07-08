@@ -32,7 +32,7 @@ function manifest(): RouteDockManifest {
         refund_waiting_period_ledgers: 17_280,
       },
     },
-    endpoints: { stream: 'GET /stream' },
+    endpoints: { stream: { method: 'GET', path: '/stream' } },
     tags: ['test'],
   }
 }
@@ -67,7 +67,7 @@ test('manual close() cancels the guard so it never fires', async () => {
   })
   // close() clears the timer synchronously before any await; the offline
   // on-chain call then rejects, which we ignore.
-  await session.close().catch(() => {})
+  await session.close().catch(() => { })
   await new Promise((r) => setTimeout(r, 80))
   assert.equal(fired, false, 'timeout fired after the session was already closed')
 })

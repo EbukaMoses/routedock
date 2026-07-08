@@ -30,7 +30,7 @@ const baseManifest: RouteDockManifest = {
       facilitator: 'https://channels.openzeppelin.com/x402/testnet',
     },
   },
-  endpoints: { price: 'GET /price' },
+  endpoints: { price: { method: 'GET', path: '/price' } },
   tags: ['test'],
   vault: 'covenant-zk',
   covenant_account: COVENANT,
